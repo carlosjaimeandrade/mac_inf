@@ -4,4 +4,4 @@
 
 Para Copilar
 Use pyinstaller https://pypi.org/project/pyinstaller/
-Comando pyinstaller.exe main.py -i --noconsole --onefile
+Comando "pyinstaller.exe main.py -i --noconsole --onefile"
