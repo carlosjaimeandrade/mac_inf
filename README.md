@@ -5,3 +5,9 @@
 Para Copilar
 Use pyinstaller https://pypi.org/project/pyinstaller/
 Comando "pyinstaller.exe Mac.py -i --noconsole --onefile"
+
+
+
+Documentation:	https://pyinstaller.readthedocs.io/
+Website:	http://www.pyinstaller.org/
+Code:	https://github.com/pyinstaller/pyinstaller
