@@ -1,30 +1,32 @@
-import uuid
-from getmac import get_mac_address
-from tkinter import * #
-from ttkthemes import *
-mac_add = get_mac_address()
-print("MAC VARIEANTE " + mac_add)
-print (hex(uuid.getnode()))
+import subprocess
+proc = subprocess.check_output("ipconfig /all" ).decode('oem')
+try:
+    macE = proc.split('\n')
+    macE = macE[14].replace(" ", "").split(":")
+    macE = macE [1]
+    if(len(macE)==18):
+        mac = macE
+    else:
+        macSfio1 = proc.split('\n')
+        macSfio1 = macSfio1[23].replace(" ", "").split(":")
+        macSfio1 = macSfio1 [1]
+        if(len(macSfio1)==18):
+            mac = macSfio1
+        else:
+            macSfio2 = proc.split('\n')
+            macSfio2 = macSfio2[32].replace(" ", "").split(":")
+            macSfio2 = macSfio2 [1]
+            if(len(macSfio2)==18):
+                mac = macSfio2
+            else:
+                macWifi = proc.split('\n')
+                macWifi = macWifi[40].replace(" ", "").split(":")
+                macWifi = macWifi[1]
+                if(len(macWifi)==18):
+                    mac = macWifi
+except:
+    print('nenhum mac encontrado')
+
+print(mac)
 
 
-print("The MAC address in formatted way is FIXO : ", end="")
-print(':'.join(['{:02x}'.format((uuid.getnode() >> ele) & 0xff)
-                for ele in range(0, 8 * 6, 8)][::-1]))
-
-texto = "MAC VARIANTE " + str(mac_add) + " / MAC FIXO = " + str(hex(uuid.getnode()))
-root = ThemedTk("aqua")
-root.title("MAC")
-root.geometry("400x110+100+200")
-root.resizable(0, 0)
-root.iconbitmap(".icon/logoF.ico")
-
-frame = Frame(root, pady=20)
-frame.pack()
-
-mensagem = Label(frame, text=texto)
-mensagem.pack()
-
-
-
-
-root.mainloop()
